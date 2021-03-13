@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LessonFirst</string>
     <string name="text_view_hello">Hello, Tanya!</string>
+    <string name="hello_user">Hello, user</string>
 </resources>
