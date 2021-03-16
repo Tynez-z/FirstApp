@@ -31,6 +31,5 @@ public class MainActivity extends AppCompatActivity {
         Log.i("example_double", String.valueOf(double_example));
         Log.i("example_char", String.valueOf(g));
 
-
     }
 }
