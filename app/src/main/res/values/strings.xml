@@ -2,4 +2,11 @@
     <string name="app_name">LessonFirst</string>
     <string name="text_view_hello">Hi, Tanya!</string>
     <string name="hello_user">Hello, user</string>
+    <string name="loop_for">Loop For</string>
+    <string name="loop_while">Loop While</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="for_loop">For Loop</string>
+    <string name="back">Back</string>
+    <string name="for_While">for_While</string>
 </resources>
