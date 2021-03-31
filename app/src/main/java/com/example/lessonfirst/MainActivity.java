@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     public Button button;
+    public Button buttonThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textViewUser);
         textView.setText("Циклы");
         button = findViewById(R.id.button);
+        buttonThread = findViewById(R.id.buttonThread);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        buttonThread.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(v.getContext(), ExampleThreadActivity.class);
+                startActivity(intent2);
+            }
+        });
+
+
+
     }
 
     public void workWithArrays() {

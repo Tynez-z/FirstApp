@@ -4,39 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ExampleThreadActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttThread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUser"
-        tools:ignore="OnClick" />
-
-    <TextView
-        android:id="@+id/textViewUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/thread"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonThread"
+        android:id="@+id/buttonToast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/threads"
+        android:layout_marginBottom="256dp"
+        android:text="@string/toast"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
+        app:layout_constraintTop_toBottomOf="@id/buttThread" />
 </androidx.constraintlayout.widget.ConstraintLayout>
