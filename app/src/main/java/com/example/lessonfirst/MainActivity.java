@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
-
-
     }
 
     public void workWithArrays() {
