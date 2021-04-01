@@ -1,16 +1,19 @@
 package com.example.lessonfirst;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     public Button button;
     public Button buttonThread;
+    public EditText editText;
+    public Button buttonSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         textView.setText("Циклы");
         button = findViewById(R.id.button);
         buttonThread = findViewById(R.id.buttonThread);
+        editText = findViewById(R.id.editTextInputWord);
+        buttonSend = findViewById(R.id.buttonSendWord);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         buttonThread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +39,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+        buttonSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(v.getContext(), GetTextActivity.class);
+                String msg = editText.getText().toString();
+                intent3.putExtra("text", msg);
+                startActivity(intent3);
+            }
+        });
+    }
+
+    public void Methods() {
+        Box box4 = new Box(44.1, 33.2);
+        Box box5 = new Box(432.4, 4.6);
+        System.out.println("Equals " + box4.equals(box5));
+        System.out.println("ToString: " + box4.toString());
+        int hashCode;
+        hashCode = box4.hashCode();
+        System.out.println("Hashcode box4: " + hashCode);
+    }
+
+    public void methodClone() throws CloneNotSupportedException {
+        Box box = new Box(22.1, 45.5);
+        Box copyBox = (Box) box.clone();
+        System.out.println("Copy box" + copyBox);
     }
 
     public void workWithArrays() {
