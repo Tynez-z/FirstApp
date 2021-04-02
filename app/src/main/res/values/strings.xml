@@ -9,4 +9,8 @@
     <string name="for_loop">For Loop</string>
     <string name="back">Back</string>
     <string name="for_While">for_While</string>
+    <string name="toast">TOAST</string>
+    <string name="thread">Thread</string>
+    <string name="threads">Threads</string>
+    <string name="to_send">To Send</string>
 </resources>
