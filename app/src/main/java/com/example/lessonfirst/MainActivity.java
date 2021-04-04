@@ -1,12 +1,14 @@
 package com.example.lessonfirst;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public Button buttonThread;
     public EditText editText;
     public Button buttonSend;
+    public Button buttonSendFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         buttonThread = findViewById(R.id.buttonThread);
         editText = findViewById(R.id.editTextInputWord);
         buttonSend = findViewById(R.id.buttonSendWord);
+        buttonSendFile = findViewById(R.id.buttonSendText);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +53,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent3);
             }
         });
+        buttonSendFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = editText.getText().toString();
+                try {
+                    FileOutputStream outPut = openFileOutput("‪D:\\Android Studio\\file.txt", MODE_PRIVATE);
+                    outPut.write(text.getBytes());
+                    outPut.close();
+                    editText.setText("");
+                    Toast.makeText(MainActivity.this, "Текст сохранен", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
+                intent4.putExtra("text", text);
+                startActivity(intent4);
+            }
+        });
+    }
+
+    public void Strings() {
+        String str = "Android Developer";
+        String reverse = new StringBuffer(str).reverse().toString();
+        System.out.println("Строка в обратном порядке, после реверса: " + reverse);
     }
 
     public void Methods() {
