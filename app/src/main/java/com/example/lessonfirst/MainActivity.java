@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 FileManager fileManager = new FileManager ();
                 fileManager.setDataToFile(editText.getText().toString());
                 Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
-                intent4.putExtra("text", editText.getText().toString());
                 startActivity(intent4);
             }
         });

@@ -19,9 +19,8 @@ public class ShowTextFromFileActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                ((TextView) findViewById(R.id.textViewShowText)).setText(getIntent().getStringExtra("text"));
                 FileManager  fileManager = new FileManager ();
-                textViewShow.setText(fileManager.getDataFromFIle());
+                textViewShow.setText(fileManager.getDataFromFIle().toString());
             }
         });
     }

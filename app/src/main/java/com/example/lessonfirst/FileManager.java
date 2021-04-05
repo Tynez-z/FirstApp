@@ -1,12 +1,14 @@
 package com.example.lessonfirst;
+
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.InputStreamReader;
 public class FileManager {
-    String text = "Hello world!";
+    String text = "Tanya";
 
-    public void setDataToFile(String text) {
+    public void setDataToFile(String textt) {
         try (FileOutputStream outPut = new FileOutputStream("‪D:\\Android Studio\\file.txt")) {
             byte[] buffer = text.getBytes();
             outPut.write(buffer, 0, buffer.length);
@@ -15,15 +17,19 @@ public class FileManager {
     }
 
     public String getDataFromFIle() {
-        try (FileInputStream inPut = new FileInputStream("‪D:\\Android Studio\\file.txt")) {
-            inPut.available();
-            int i = -1;
-            while ((i = inPut.read()) != -1) {
-                System.out.print((char) i);
+        try {
+            FileInputStream fileInPut = new FileInputStream("‪D:\\Android Studio\\file.txt");
+            InputStreamReader reader = new InputStreamReader(fileInPut);
+            BufferedReader buff = new BufferedReader(reader);
+            StringBuffer strBuff = new StringBuffer();
+            String lines;
+            while ((lines = buff.readLine()) != null) {
+                strBuff.append(lines);
             }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return null;
+        return text;
     }
 }
+
