@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextInputWord);
         buttonSend = findViewById(R.id.buttonSendWord);
         buttonSendFile = findViewById(R.id.buttonSendText);
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,10 +55,11 @@ public class MainActivity extends AppCompatActivity {
         buttonSendFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = editText.getText().toString();
+                FileManager fileManager = new FileManager ();
+                fileManager.setDataToFile(editText.getText());
                 try {
                     FileOutputStream outPut = openFileOutput("‪D:\\Android Studio\\file.txt", MODE_PRIVATE);
-                    outPut.write(text.getBytes());
+                    outPut.write(editText.getText().toString().getBytes());
                     outPut.close();
                     editText.setText("");
                     Toast.makeText(MainActivity.this, "Текст сохранен", Toast.LENGTH_SHORT).show();
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
-                intent4.putExtra("text", text);
+                intent4.putExtra("text", editText.getText().toString());
                 startActivity(intent4);
             }
         });
