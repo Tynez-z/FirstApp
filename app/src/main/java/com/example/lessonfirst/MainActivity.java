@@ -7,8 +7,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -56,16 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FileManager fileManager = new FileManager ();
-                fileManager.setDataToFile(editText.getText());
-                try {
-                    FileOutputStream outPut = openFileOutput("‪D:\\Android Studio\\file.txt", MODE_PRIVATE);
-                    outPut.write(editText.getText().toString().getBytes());
-                    outPut.close();
-                    editText.setText("");
-                    Toast.makeText(MainActivity.this, "Текст сохранен", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                fileManager.setDataToFile(editText.getText().toString());
                 Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
                 intent4.putExtra("text", editText.getText().toString());
                 startActivity(intent4);
