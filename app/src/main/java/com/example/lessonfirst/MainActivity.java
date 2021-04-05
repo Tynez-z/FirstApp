@@ -1,11 +1,11 @@
 package com.example.lessonfirst;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public Button buttonThread;
     public EditText editText;
     public Button buttonSend;
+    public Button buttonSendFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         buttonThread = findViewById(R.id.buttonThread);
         editText = findViewById(R.id.editTextInputWord);
         buttonSend = findViewById(R.id.buttonSendWord);
+        buttonSendFile = findViewById(R.id.buttonSendText);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +50,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent3);
             }
         });
+        buttonSendFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileManager fileManager = new FileManager ();
+                fileManager.setDataToFile(editText.getText().toString());
+                Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
+                startActivity(intent4);
+            }
+        });
+    }
+
+    public void Strings() {
+        String str = "Android Developer";
+        String reverse = new StringBuffer(str).reverse().toString();
+        System.out.println("Строка в обратном порядке, после реверса: " + reverse);
     }
 
     public void Methods() {

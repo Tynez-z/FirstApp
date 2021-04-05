@@ -13,4 +13,6 @@
     <string name="thread">Thread</string>
     <string name="threads">Threads</string>
     <string name="to_send">To Send</string>
+    <string name="send_file">send file</string>
+    <string name="showtext">ShowText</string>
 </resources>
