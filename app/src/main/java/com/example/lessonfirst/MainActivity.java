@@ -5,8 +5,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -15,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     public EditText editText;
     public Button buttonSend;
     public Button buttonSendFile;
+    public Button buttonResult;
+    public TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,55 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent4);
             }
         });
+        buttonResult = findViewById(R.id.buttonResult);
+        buttonResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewResult = findViewById(R.id.textViewResult);
+                Callable callable = getDataFromCallable();
+                FutureTask futureTask = new FutureTask(callable);
+                new Thread(futureTask).start();
+                try {
+                    textViewResult.setText(futureTask.get().toString());
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+    public Callable<Integer> getDataFromCallable(){
+        Callable <Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                int summa = 0;
+                for (int i = 2; i <= Integer.parseInt(editText.getText().toString()); i++) {
+                    summa += i;
+                }
+                return summa;
+            }
+        };
+        return callable;
+    }
+
+    public void ArrayWithLinkedList () {
+        ArrayList<Double> arrayList = new ArrayList<>();
+        LinkedList<Double> linkedList = new LinkedList<>();
+        int a = 1000000;
+        int b = 1000;
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < a; i++) {
+            arrayList.add(Math.random());
+            linkedList.add(Math.random());
+        }
+        for (int i = 0; i < b; i++) {
+            arrayList.get((int) (Math.random() * a - 1));
+        }
+        System.out.println(System.currentTimeMillis() - time);
+        for (int i = 0; i < b; i++) {
+            linkedList.get((int) (Math.random() * a - 1));
+        }
+        System.out.println(System.currentTimeMillis() - time);
     }
 
     public void Strings() {
