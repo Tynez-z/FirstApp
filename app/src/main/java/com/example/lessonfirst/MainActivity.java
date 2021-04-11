@@ -1,12 +1,18 @@
 package com.example.lessonfirst;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSendFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManager fileManager = new FileManager ();
+                FileManager fileManager = new FileManager();
                 fileManager.setDataToFile(editText.getText().toString());
                 Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
                 startActivity(intent4);
@@ -82,8 +88,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public Callable<Integer> getDataFromCallable(){
-        Callable <Integer> callable = new Callable<Integer>() {
+
+    public Callable<Integer> getDataFromCallable() {
+        Callable<Integer> callable = new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
                 int summa = 0;
@@ -96,7 +103,34 @@ public class MainActivity extends AppCompatActivity {
         return callable;
     }
 
-    public void ArrayWithLinkedList () {
+    public void WorkWithArray() {
+        int[] arrayStart = new int[]{1, 9, 10, 9, 23, 9, 17, 8, 9};
+        int[] arrayAfter = remove(arrayStart, 9);
+        System.out.println("ArrayStart: " + Arrays.toString(arrayStart));
+        System.out.println("ArrayAfter: " + Arrays.toString(arrayAfter));
+    }
+
+    private int[] remove(int[] start, int remove) {
+        int a = 0;
+        for (int i = 0; i < start.length; i++) {
+            if (start[i] != remove) {
+                a = a + 1;
+            }
+        }
+        int[] after = new int[a];
+        for (int i = 0, j = 0; i < start.length; i++) {
+            if (start[i] != remove) {
+                after[j++] = start[i];
+            }
+        }
+        return after;
+    }
+
+    public <A> Collection<A> removeDuplicates(Collection<A> collection) {
+        return new HashSet<>(collection);
+    }
+
+    public void ArrayWithLinkedList() {
         ArrayList<Double> arrayList = new ArrayList<>();
         LinkedList<Double> linkedList = new LinkedList<>();
         int a = 1000000;
