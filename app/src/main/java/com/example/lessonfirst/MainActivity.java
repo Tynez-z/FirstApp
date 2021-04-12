@@ -5,8 +5,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
@@ -15,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public EditText editText;
     public Button buttonSend;
     public Button buttonSendFile;
+    public Button buttonResult;
+    public TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +62,89 @@ public class MainActivity extends AppCompatActivity {
         buttonSendFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FileManager fileManager = new FileManager ();
+                FileManager fileManager = new FileManager();
                 fileManager.setDataToFile(editText.getText().toString());
                 Intent intent4 = new Intent(v.getContext(), ShowTextFromFileActivity.class);
                 startActivity(intent4);
             }
         });
+        buttonResult = findViewById(R.id.buttonResult);
+        buttonResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewResult = findViewById(R.id.textViewResult);
+                Callable callable = getDataFromCallable();
+                FutureTask futureTask = new FutureTask(callable);
+                new Thread(futureTask).start();
+                try {
+                    textViewResult.setText(futureTask.get().toString());
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    public Callable<Integer> getDataFromCallable() {
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                int summa = 0;
+                for (int i = 2; i <= Integer.parseInt(editText.getText().toString()); i++) {
+                    summa += i;
+                }
+                return summa;
+            }
+        };
+        return callable;
+    }
+
+    public void WorkWithArray() {
+        int[] arrayStart = new int[]{1, 9, 10, 9, 23, 9, 17, 8, 9};
+        int[] arrayAfter = remove(arrayStart, 9);
+        System.out.println("ArrayStart: " + Arrays.toString(arrayStart));
+        System.out.println("ArrayAfter: " + Arrays.toString(arrayAfter));
+    }
+
+    private int[] remove(int[] start, int remove) {
+        int a = 0;
+        for (int i = 0; i < start.length; i++) {
+            if (start[i] != remove) {
+                a = a + 1;
+            }
+        }
+        int[] after = new int[a];
+        for (int i = 0, j = 0; i < start.length; i++) {
+            if (start[i] != remove) {
+                after[j++] = start[i];
+            }
+        }
+        return after;
+    }
+
+    public <A> Collection<A> removeDuplicates(Collection<A> collection) {
+        return new HashSet<>(collection);
+    }
+
+    public void ArrayWithLinkedList() {
+        ArrayList<Double> arrayList = new ArrayList<>();
+        LinkedList<Double> linkedList = new LinkedList<>();
+        int a = 1000000;
+        int b = 1000;
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < a; i++) {
+            arrayList.add(Math.random());
+            linkedList.add(Math.random());
+        }
+        for (int i = 0; i < b; i++) {
+            arrayList.get((int) (Math.random() * a - 1));
+        }
+        System.out.println(System.currentTimeMillis() - time);
+        for (int i = 0; i < b; i++) {
+            linkedList.get((int) (Math.random() * a - 1));
+        }
+        System.out.println(System.currentTimeMillis() - time);
     }
 
     public void Strings() {
