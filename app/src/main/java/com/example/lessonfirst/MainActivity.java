@@ -9,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -121,6 +124,41 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return after;
+    }
+
+    public void workWtithMap() {
+        HashMap<Integer, String> mapa = new HashMap<Integer, String>();
+        mapa.put(1, "First string");
+        mapa.put(2, "Second string");
+        mapa.put(3, "Third string");
+        for (Map.Entry<Integer, String> describe : mapa.entrySet()) {
+            System.out.println("Key: " + describe.getKey() + "Value: " + describe.getValue());
+        }
+        Iterator iterator = mapa.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry exampleWhile = (Map.Entry) iterator.next();
+            System.out.println("Ключ: " + exampleWhile.getKey() + "Значение: " + exampleWhile.getValue());
+        }
+    }
+
+    public void workWithPalindromes() {
+        String original = "abba";
+        String reverse = "";
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reverse = reverse + original.charAt(i);
+            System.out.println(reverse);
+        }
+        boolean palindrome = true;
+        for (int i = 0; i < original.length(); i++) {
+            if (original.charAt(i) != reverse.charAt(i)) {
+                palindrome = false;
+            }
+        }
+        if (palindrome) {
+            System.out.println("It's palindrome");
+        } else {
+            System.out.println("It's not a palindrome");
+        }
     }
 
     public <A> Collection<A> removeDuplicates(Collection<A> collection) {
