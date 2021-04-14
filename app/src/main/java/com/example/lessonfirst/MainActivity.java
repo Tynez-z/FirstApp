@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public Button buttonSendFile;
     public Button buttonResult;
     public TextView textViewResult;
+    public Button buttonGoToPalindrome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextInputWord);
         buttonSend = findViewById(R.id.buttonSendWord);
         buttonSendFile = findViewById(R.id.buttonSendText);
+        buttonGoToPalindrome = findViewById(R.id.buttonGoToPalindrome);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +88,13 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+        buttonGoToPalindrome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPalindrome = new Intent(v.getContext(), PalindromeActivity.class);
+                startActivity(intentPalindrome);
             }
         });
     }
@@ -141,27 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void workWithPalindromes() {
-        String original = "abba";
-        String reverse = "";
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reverse = reverse + original.charAt(i);
-            System.out.println(reverse);
-        }
-        boolean palindrome = true;
-        for (int i = 0; i < original.length(); i++) {
-            if (original.charAt(i) != reverse.charAt(i)) {
-                palindrome = false;
-            }
-        }
-        if (palindrome) {
-            System.out.println("It's palindrome");
-        } else {
-            System.out.println("It's not a palindrome");
-        }
-    }
-
-    public <A> Collection<A> removeDuplicates(Collection<A> collection) {
+        public <A> Collection<A> removeDuplicates(Collection<A> collection) {
         return new HashSet<>(collection);
     }
 
