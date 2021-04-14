@@ -1,4 +1,5 @@
 package com.example.lessonfirst;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -136,8 +137,7 @@ public class MainActivity extends AppCompatActivity {
         return after;
     }
 
-    public void workWtithMap() {
-        HashMap<Integer, String> mapa = new HashMap<Integer, String>();
+    public void workWtithMap(HashMap<Integer, String> mapa) {
         mapa.put(1, "First string");
         mapa.put(2, "Second string");
         mapa.put(3, "Third string");
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-        public <A> Collection<A> removeDuplicates(Collection<A> collection) {
+    public <A> Collection<A> removeDuplicates(Collection<A> collection) {
         return new HashSet<>(collection);
     }
 
