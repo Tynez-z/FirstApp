@@ -1,4 +1,5 @@
 package com.example.lessonfirst;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public Button buttonSendFile;
     public Button buttonResult;
     public TextView textViewResult;
+    public Button buttonGoToPalindrome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextInputWord);
         buttonSend = findViewById(R.id.buttonSendWord);
         buttonSendFile = findViewById(R.id.buttonSendText);
+        buttonGoToPalindrome = findViewById(R.id.buttonGoToPalindrome);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        buttonGoToPalindrome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPalindrome = new Intent(v.getContext(), PalindromeActivity.class);
+                startActivity(intentPalindrome);
+            }
+        });
     }
 
     public Callable<Integer> getDataFromCallable() {
@@ -121,6 +135,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return after;
+    }
+
+    public void workWtithMap(HashMap<Integer, String> mapa) {
+        mapa.put(1, "First string");
+        mapa.put(2, "Second string");
+        mapa.put(3, "Third string");
+        for (Map.Entry<Integer, String> describe : mapa.entrySet()) {
+            System.out.println("Key: " + describe.getKey() + "Value: " + describe.getValue());
+        }
+        Iterator iterator = mapa.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry exampleWhile = (Map.Entry) iterator.next();
+            System.out.println("Ключ: " + exampleWhile.getKey() + "Значение: " + exampleWhile.getValue());
+        }
     }
 
     public <A> Collection<A> removeDuplicates(Collection<A> collection) {
